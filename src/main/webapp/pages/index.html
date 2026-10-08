@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ColorSolve — Graph Coloring System</title>
+
+    <link rel="icon" href="data:,">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Cytoscape -->
+    <script src="https://unpkg.com/cytoscape@3.25.2/dist/cytoscape.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Background -->
+    <div class="background-grid"></div>
+
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="orb orb-three"></div>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="topbar">
+
+        <a href="#" class="brand">
+
+            <span class="brand-icon">
+                <i class="fa-solid fa-circle-nodes"></i>
+            </span>
+
+            <span>
+                <strong>
+                    Color<span>Solve</span>
+                </strong>
+
+                <small>GRAPH INTELLIGENCE PLATFORM</small>
+            </span>
+
+        </a>
+
+
+        <nav class="navbar">
+
+            <a href="#controls" class="active">
+                <i class="fa-solid fa-sliders"></i>
+                Controls
+            </a>
+
+            <a href="#visualization">
+                <i class="fa-solid fa-share-nodes"></i>
+                Visualizer
+            </a>
+
+            <a href="#result">
+                <i class="fa-solid fa-chart-simple"></i>
+                Results
+            </a>
+
+        </nav>
+
+
+        <div class="live-status">
+            <span class="pulse"></span>
+            SYSTEM ONLINE
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="container">
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero-section">
+
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Intelligent graph coloring
+                </p>
+
+
+                <h1>
+                    Visualize.
+                    <span>Color.</span>
+                    Optimize.
+                </h1>
+
+
+                <p class="hero-text">
+                    Build, analyze and solve complex graph networks using
+                    advanced DSATUR coloring algorithms.
+                </p>
+
+
+                <div class="hero-tags">
+
+                    <span>
+                        <i class="fa-solid fa-bolt"></i>
+                        Fast Processing
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-shield-halved"></i>
+                        Conflict Analysis
+                    </span>
+
+                    <span>
+                        <i class="fa-solid fa-database"></i>
+                        Persistent Storage
+                    </span>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="hero-visual">
+
+                <div class="network-orbit orbit-a"></div>
+                <div class="network-orbit orbit-b"></div>
+
+                <div class="network-core">
+                    <i class="fa-solid fa-diagram-project"></i>
+                </div>
+
+                <span class="network-dot dot-a"></span>
+                <span class="network-dot dot-b"></span>
+                <span class="network-dot dot-c"></span>
+                <span class="network-dot dot-d"></span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ================= DASHBOARD ================= -->
+
+        <section class="dashboard-layout">
+
+
+            <!-- ================= LEFT COLUMN ================= -->
+
+            <div class="left-column">
+
+
+                <!-- CONTROL CARD -->
+
+                <section class="card control-card" id="controls">
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <p class="section-label">
+                                CONFIGURATION
+                            </p>
+
+                            <h2>
+                                Graph Controls
+                            </h2>
+
+                        </div>
+
+
+                        <div class="heading-icon">
+                            <i class="fa-solid fa-sliders"></i>
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- FORM -->
+
+                    <div class="form-grid">
+
+
+                        <!-- USE CASE -->
+
+                        <div class="input-group full-width">
+
+                            <label for="useCaseSelect">
+
+                                <i class="fa-solid fa-layer-group"></i>
+
+                                Use Case
+
+                            </label>
+
+
+                            <div class="select-wrapper">
+
+                                <select id="useCaseSelect">
+
+                                    <option value="exam">
+                                        Exam Timetable
+                                    </option>
+
+                                    <option value="telecom">
+                                        Telecom Frequency
+                                    </option>
+
+                                    <option value="map">
+                                        Map Coloring
+                                    </option>
+
+                                    <option value="compiler">
+                                        Compiler Registers
+                                    </option>
+
+                                </select>
+
+
+                                <i class="fa-solid fa-chevron-down"></i>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- VERTICES -->
+
+                        <div class="input-group">
+
+                            <label for="vertexCount">
+
+                                <i class="fa-solid fa-circle-nodes"></i>
+
+                                Number of Vertices
+
+                            </label>
+
+
+                            <input
+                                type="number"
+                                id="vertexCount"
+                                value="30"
+                                min="3"
+                                max="500">
+
+                        </div>
+
+
+
+                        <!-- GRAPH NAME -->
+
+                        <div class="input-group">
+
+                            <label for="graphName">
+
+                                <i class="fa-solid fa-pen"></i>
+
+                                Graph Name
+
+                            </label>
+
+
+                            <input
+                                type="text"
+                                id="graphName"
+                                maxlength="100"
+                                placeholder="Example: Exam timetable August">
+
+                        </div>
+
+
+
+                        <!-- FILE UPLOAD -->
+
+                        <div class="input-group full-width">
+
+                            <label for="uploadFile">
+
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                                Upload Graph
+
+                            </label>
+
+
+                            <label
+                                class="file-upload"
+                                for="uploadFile">
+
+                                <i class="fa-solid fa-file-import"></i>
+
+                                <span>
+                                    Choose graph file
+                                </span>
+
+                                <small>
+                                    JSON, TXT or CSV
+                                </small>
+
+
+                                <input
+                                    type="file"
+                                    id="uploadFile"
+                                    accept=".json,.txt,.csv">
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- BUTTONS -->
+
+                    <div class="button-grid">
+
+
+                        <button
+                            id="loadExample"
+                            type="button"
+                            class="btn btn-primary">
+
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                            Generate Graph
+
+                        </button>
+
+
+
+                        <button
+                            id="runLocal"
+                            type="button"
+                            class="btn btn-secondary">
+
+                            <i class="fa-solid fa-microchip"></i>
+
+                            Run Local DSATUR
+
+                        </button>
+
+
+
+                        <button
+                            id="runBackend"
+                            type="button"
+                            class="btn btn-secondary">
+
+                            <i class="fa-solid fa-server"></i>
+
+                            Run via Backend
+
+                        </button>
+
+
+
+                        <button
+                            id="saveGraph"
+                            type="button"
+                            class="btn btn-secondary">
+
+                            <i class="fa-solid fa-floppy-disk"></i>
+
+                            Save to Database
+
+                        </button>
+
+
+
+                        <button
+                            id="loadGraph"
+                            type="button"
+                            class="btn btn-secondary">
+
+                            <i class="fa-solid fa-clock-rotate-left"></i>
+
+                            Load Latest Graph
+
+                        </button>
+
+
+
+                        <button
+                            id="exportJson"
+                            type="button"
+                            class="btn btn-outline">
+
+                            <i class="fa-solid fa-download"></i>
+
+                            Download JSON
+
+                        </button>
+
+                    </div>
+
+
+
+                    <!-- STATUS -->
+
+                    <div class="status-box">
+
+                        <span class="status-indicator"></span>
+
+                        <p
+                            id="statusMessage"
+                            class="status"
+                            aria-live="polite">
+
+                            Ready to process your graph network.
+
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- FORMAT INFO -->
+
+                    <div class="format-info">
+
+                        <i class="fa-solid fa-circle-info"></i>
+
+
+                        <div>
+
+                            <strong>
+                                Supported formats
+                            </strong>
+
+
+                            <p>
+                                JSON adjacency:
+                                <code>{"A":["B","C"],"B":["A"]}</code>
+                            </p>
+
+
+                            <p>
+                                CSV edge list:
+                                <code>source,target</code>
+                            </p>
+
+
+                            <p>
+                                Text adjacency:
+                                <code>A: B, C</code>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+
+            <!-- ================= RIGHT COLUMN ================= -->
+
+            <div class="right-column">
+
+
+                <!-- VISUALIZATION -->
+
+                <section
+                    class="card visualization-card"
+                    id="visualization">
+
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <p class="section-label">
+                                LIVE CANVAS
+                            </p>
+
+                            <h2>
+                                Graph Visualization
+                            </h2>
+
+                        </div>
+
+
+                        <div class="visualizer-tools">
+
+                            <span class="canvas-status">
+
+                                <span class="pulse"></span>
+
+                                LIVE
+
+                            </span>
+
+
+                            <button
+                                type="button"
+                                title="Network View">
+
+                                <i class="fa-solid fa-expand"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CYTOSCAPE CONTAINER -->
+
+                    <div id="cy">
+
+                        <div class="empty-graph">
+
+                            <div class="empty-icon">
+
+                                <i class="fa-solid fa-share-nodes"></i>
+
+                            </div>
+
+
+                            <h3>
+                                Your network appears here
+                            </h3>
+
+
+                            <p>
+                                Generate or upload a graph to begin visualization.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- CANVAS FOOTER -->
+
+                    <div class="canvas-footer">
+
+                        <span>
+
+                            <i class="fa-solid fa-mouse"></i>
+
+                            Drag nodes to explore
+
+                        </span>
+
+
+                        <span>
+
+                            <i class="fa-solid fa-magnifying-glass"></i>
+
+                            Scroll to zoom
+
+                        </span>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- ================= RESULTS ================= -->
+
+                <section
+                    class="card results-card"
+                    id="result">
+
+
+                    <div class="card-heading">
+
+                        <div>
+
+                            <p class="section-label">
+                                ANALYTICS
+                            </p>
+
+                            <h2>
+                                Coloring Results
+                            </h2>
+
+                        </div>
+
+
+                        <div class="heading-icon success-icon">
+
+                            <i class="fa-solid fa-chart-line"></i>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- METRICS -->
+
+                    <div class="metrics">
+
+
+                        <div class="metric-box">
+
+                            <div class="metric-icon purple">
+
+                                <i class="fa-solid fa-palette"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <small>
+                                    COLORS USED
+                                </small>
+
+                                <strong id="colors-used">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="metric-box">
+
+                            <div class="metric-icon green">
+
+                                <i class="fa-solid fa-circle-check"></i>
+
+                            </div>
+
+
+                            <div>
+
+                                <small>
+                                    CONFLICTS
+                                </small>
+
+                                <strong id="conflicts-resolved">
+                                    0
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- LEGEND -->
+
+                    <div class="legend-heading">
+
+                        <span>
+                            Color Legend
+                        </span>
+
+                        <span class="legend-count">
+                            Active palette
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        id="legend"
+                        class="legend">
+
+                        <div class="empty-legend">
+
+                            Run the coloring algorithm to see the palette.
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <span>
+
+            <i class="fa-solid fa-circle-nodes"></i>
+
+            ColorSolve
+
+        </span>
+
+
+        <small>
+            Backend-enabled graph coloring system
+        </small>
+
+
+        <span class="footer-version">
+            v1.0
+        </span>
+
+    </footer>
+
+
+
+    <!-- ================= APPLICATION CONFIG ================= -->
+
+    <script>
+        const BASE_URL = "/COLORSOLVEPROJECT";
+    </script>
+
+
+    <!-- ================= APPLICATION JS ================= -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
