@@ -94,3 +94,15 @@ GitHub Profile
 
 📜 License
 This project is open-source and available under the MIT License.
+
+
+---
+
+### Isko GitHub par kaise daalein?
+1. Apne GitHub repository (`Entropy-based-graph-coloring`) par jayein.
+2. **"Add file"** > **"Create new file"** par click karein.
+3. File ka naam **`README.md`** rakhein.
+4. Upar diya gaya pura code copy karke wahan paste kar dein.
+5. Neeche green color ke **"Commit changes..."** button par click karke save kar dein. 
+
+Iske sath hi aapke teeno projects (`BharatRail`, `DigitalSignatureSystem`, aur `ColorSolv
